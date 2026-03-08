@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Poetry Garden</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f2f2f2;
+padding:40px;
+}
+
+h1{
+text-align:center;
+}
+
+.post-box{
+background:white;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+textarea{
+width:100%;
+height:120px;
+}
+
+input{
+width:100%;
+padding:8px;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+border:none;
+background:#7b5cff;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+.poem{
+background:white;
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+}
+
+.tag{
+color:#666;
+font-size:12px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🌸 Poetry Garden</h1>
+
+<div class="post-box">
+
+<h3>Share your poem</h3>
+
+<input id="title" placeholder="Poem title">
+
+<br><br>
+
+<textarea id="poem" placeholder="Write your poem..."></textarea>
+
+<br><br>
+
+<input id="tags" placeholder="tags (example: nature, love, sad)">
+
+<br><br>
+
+<select id="feedback">
+<option>Feedback welcome</option>
+<option>Only positive comments</option>
+<option>No advice please</option>
+</select>
+
+<br>
+
+<button onclick="postPoem()">Post Poem</button>
+
+</div>
+
+<h2>Recent Poems</h2>
+
+<div id="feed"></div>
+
+<script>
+
+function postPoem(){
+
+let title = document.getElementById("title").value
+let poem = document.getElementById("poem").value
+let tags = document.getElementById("tags").value
+let feedback = document.getElementById("feedback").value
+
+let post = document.createElement("div")
+
+post.className="poem"
+
+post.innerHTML=
+"<h3>"+title+"</h3>"+
+"<p>"+poem+"</p>"+
+"<div class='tag'>Tags: "+tags+"</div>"+
+"<small>"+feedback+"</small>"+
+"<br><br>"+
+"<button onclick='like(this)'>❤️ Like</button>"+
+"<button onclick='comment(this)'>💬 Comment</button>"
+
+document.getElementById("feed").prepend(post)
+
+}
+
+function like(btn){
+
+btn.innerHTML="❤️ Liked"
+
+}
+
+function comment(btn){
+
+let comment = prompt("Write a comment")
+
+if(comment){
+
+let c = document.createElement("p")
+c.innerHTML="💬 "+comment
+
+btn.parentElement.appendChild(c)
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
